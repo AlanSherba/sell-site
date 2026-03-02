@@ -4,7 +4,12 @@
       "Bash(npm view:*)",
       "Bash(node:*)",
       "Bash(npm:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(git -C /c/GitRepos/sell-site log --oneline -5)",
+      "WebFetch(domain:gist.github.com)",
+      "Bash(npx tsc:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(timeout 3 npx vite:*)"
     ]
   }
 }
