@@ -36,11 +36,11 @@ export function ItemDetail({ item }: ItemDetailProps) {
   }, [navigate]);
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto">
       {/* Backdrop */}
       <Link
         to="/"
-        className="fixed inset-0 bg-black/60"
+        className="fixed inset-0 bg-white/60"
         aria-label="Close detail"
       />
 
@@ -70,7 +70,7 @@ export function ItemDetail({ item }: ItemDetailProps) {
               <button
                 key={i}
                 onClick={() => setCurrentImage(i)}
-                className={`h-16 w-16 flex-shrink-0 cursor-pointer overflow-hidden rounded border-2 ${
+                className={`h-16 w-16 flex-shrink-0 cursor-pointer overflow-hidden border-2 ${
                   i === currentImage
                     ? "border-blue-500"
                     : "border-transparent"
