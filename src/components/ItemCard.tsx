@@ -14,11 +14,13 @@ export function ItemCard({ item }: ItemCardProps)
       className="group block overflow-hidden bg-white border-2 border-black"
     >
       <div className="relative aspect-square overflow-hidden">
-        <img
-          src={item.mainImage}
-          alt={item.name}
-          className="h-full w-full object-cover group-hover:scale-105"
-        />
+        {item.mainImage && (
+          <img
+            src={item.mainImage}
+            alt={item.name}
+            className="h-full w-full object-cover group-hover:scale-105"
+          />
+        )}
         {item.sold && (
           <div className="absolute inset-0 flex items-center justify-center bg-white/70">
             <span className="bg-white px-3 py-1 text-lg font-bold text-black">

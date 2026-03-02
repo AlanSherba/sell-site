@@ -8,7 +8,10 @@ interface ItemDetailProps {
 
 export function ItemDetail({ item }: ItemDetailProps) {
   const [currentImage, setCurrentImage] = useState(0);
-  const allImages = [item.mainImage, ...item.additionalImages];
+  const allImages = [
+    ...(item.mainImage ? [item.mainImage] : []),
+    ...item.additionalImages,
+  ];
   const navigate = useNavigate();
 
   // Reset image index when item changes
@@ -45,10 +48,10 @@ export function ItemDetail({ item }: ItemDetailProps) {
       />
 
       {/* Content panel */}
-      <div className="relative mx-auto mt-8 mb-8 max-w-3xl bg-white p-6 shadow-xl border-2 border-black">
+      <div className="relative mx-auto mt-8 mb-8 max-w-3xl bg-white p-6 shadow-xl border-4 border-black">
         <Link
           to="/"
-          className="absolute top-[-2px] right-[-64px] text-4xl bg-white border-2 border-black w-[48px] h-[48px] flex items-center justify-center leading-none text-gray-400 hover:text-gray-600"
+          className="absolute top-[-2px] right-[-64px] text-4xl bg-white border-4 border-black w-[48px] h-[48px] flex items-center justify-center leading-none text-gray-400 hover:text-gray-600"
           aria-label="Close"
         >
           &times;
@@ -88,7 +91,7 @@ export function ItemDetail({ item }: ItemDetailProps) {
 
         {/* Item info */}
         <h2 className="mt-4 text-2xl font-bold text-gray-900">{item.name}</h2>
-        <p className="mt-1 text-3xl font-bold text-green-700">
+        <p className="mt-1 text-[#A3FF5C] text-3xl font-bold ">
           ${item.price.toFixed(2)}
         </p>
 

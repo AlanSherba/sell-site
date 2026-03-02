@@ -67,7 +67,7 @@ export function parseCSV(text: string): string[][] {
 
 function toDriveDirectUrl(url: string): string {
   const match = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
-  if (match) return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+  if (match) return `https://lh3.googleusercontent.com/d/${match[1]}=w1000`;
   return url;
 }
 
@@ -85,7 +85,8 @@ function rowToItem(raw: RawRow, rowIndex: number): Item {
   if (!isFinite(price) || price < 0)
     throw new Error(`Row ${rowIndex + 2}: invalid price "${priceStr}"`);
 
-  const mainImage = toDriveDirectUrl(raw["mainImage"]?.trim() ?? "");
+  const rawImage = raw["mainImage"]?.trim();
+  const mainImage = rawImage ? toDriveDirectUrl(rawImage) : null;
   const description = raw["description"]?.trim() ?? "";
 
   const additionalImages = (raw["additionalImages"] ?? "")
