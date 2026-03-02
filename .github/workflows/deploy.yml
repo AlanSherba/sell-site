@@ -23,9 +23,6 @@ jobs:
           cache: npm
 
       - run: npm ci
-      - run: npm run generate
-        env:
-          GOOGLE_SHEET_URL: ${{ secrets.GOOGLE_SHEET_URL }}
       - run: npm run build
 
       - uses: JamesIves/github-pages-deploy-action@v4
