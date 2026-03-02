@@ -45,17 +45,17 @@ export function ItemDetail({ item }: ItemDetailProps) {
       />
 
       {/* Content panel */}
-      <div className="relative mx-auto mt-8 mb-8 max-w-3xl bg-white p-6 shadow-2xl">
+      <div className="relative mx-auto mt-8 mb-8 max-w-3xl bg-white p-6 shadow-xl border-2 border-black">
         <Link
           to="/"
-          className="absolute top-4 right-4 text-2xl leading-none text-gray-400 hover:text-gray-600"
+          className="absolute top-[-2px] right-[-64px] text-4xl bg-white border-2 border-black w-[48px] h-[48px] flex items-center justify-center leading-none text-gray-400 hover:text-gray-600"
           aria-label="Close"
         >
           &times;
         </Link>
 
         {/* Main image */}
-        <div className="aspect-video overflow-hidden rounded-lg bg-gray-100">
+        <div className="aspect-video overflow-hidden bg-gray-100">
           <img
             src={allImages[currentImage]}
             alt={item.name}

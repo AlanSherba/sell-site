@@ -1,11 +1,13 @@
 import { useSearchParams } from "react-router-dom";
-import { items } from "../data/items";
+import { useItems } from "../hooks/useItems";
 import { ItemGrid } from "../components/ItemGrid";
 import { ItemDetail } from "../components/ItemDetail";
 
 export function HomePage()
 {
   const [searchParams] = useSearchParams();
+  const { items, loading, error } = useItems();
+
   const selectedItemId = searchParams.get("item");
   const selectedItem = selectedItemId
     ? items.find((i) => i.id === selectedItemId) ?? null
@@ -19,7 +21,17 @@ export function HomePage()
         </div>
       </header>
       <main className="mx-auto h-100% max-w-7xl mt-[-4px]">
-        <ItemGrid items={items} />
+        {loading && (
+          <div className="flex justify-center py-20">
+            <p className="text-lg text-gray-500">Loading items...</p>
+          </div>
+        )}
+        {error && (
+          <div className="flex justify-center py-20">
+            <p className="text-lg text-red-600">Error: {error}</p>
+          </div>
+        )}
+        {!loading && !error && <ItemGrid items={items} />}
       </main>
       {selectedItem && <ItemDetail item={selectedItem} />}
     </div>
