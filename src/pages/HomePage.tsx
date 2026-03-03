@@ -45,7 +45,7 @@ export function HomePage()
     <div className="min-h-screen bg-white">
       <header className="sticky top-0 z-10 bg-white border-b-4">
         <div className="mx-auto max-w-7xl px-4 py-6 flex flex-row items-center">
-          <h1 className="text-3xl font-bold text-gray-900 mr-8">Ivystone Yard Sale</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mr-8">Digital Yard Sale</h1>
           {allTags.length > 0 && (
             <div className="flex gap-2">
               {allTags.map((tag) => (
