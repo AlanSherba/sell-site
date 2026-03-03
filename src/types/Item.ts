@@ -5,6 +5,8 @@ export interface Item {
   mainImage: string | null;
   description: string;
   additionalImages: string[];
+  tags: string[];
   condition: "new" | "like-new" | "good" | "fair" | "poor";
   sold: boolean;
+  retailLink: string;
 }

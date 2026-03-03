@@ -10,15 +10,15 @@ export function ItemCard({ item }: ItemCardProps)
 {
   return (
     <Link
-      to={`?item=${item.id}`}
-      className="group block overflow-hidden bg-white border-2 border-black"
+      to={`/?item=${item.id}`}
+      className="group block overflow-hidden bg-white"
     >
-      <div className="relative aspect-square overflow-hidden">
+      <div className="relative aspect-square overflow-hidden p-4">
         {item.mainImage && (
           <img
             src={item.mainImage}
             alt={item.name}
-            className="h-full w-full object-cover group-hover:scale-105"
+            className="h-full w-full object-cover group-hover:scale-115 transition"
           />
         )}
         {item.sold && (
@@ -29,7 +29,7 @@ export function ItemCard({ item }: ItemCardProps)
           </div>
         )}
         {!item.sold && (
-          <div className="absolute top-0 left-0 p-4 flex flex-col gap-2 items-start">
+          <div className="absolute top-0 left-0 p-4 flex flex-col gap-0 items-start">
             {/* name */}
             <div className="pl-2 pr-2 bg-white/90 inline-block backdrop-blur-[32px] w-auto max-w-full">
               <span className="text-lg font-semibold text-black">
@@ -38,8 +38,8 @@ export function ItemCard({ item }: ItemCardProps)
             </div>
             {/* price */}
             <div className="pl-2 pr-2 bg-[#A3FF5C] inline-block w-auto max-w-full">
-              <span className="text-lg font-semibold text-[#2D2D2D] drop-shadow-sm">
-                ${item.price.toFixed(0)}
+              <span className="text-lg font-semibold text-[#2D2D2D]">
+                {item.price === 0 ? "FREE" : `$${item.price.toFixed(0)}`}
               </span>
             </div>
           </div>

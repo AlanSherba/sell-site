@@ -73,12 +73,12 @@ function toDriveDirectUrl(url: string): string {
 
 // --- Row to item mapping ---
 
-function rowToItem(raw: RawRow, rowIndex: number): Item {
+function rowToItem(raw: RawRow, rowIndex: number): Item | null {
   const id = raw["id"]?.trim();
-  if (!id) throw new Error(`Row ${rowIndex + 2}: missing "id"`);
+  if (!id) return null;
 
   const name = raw["name"]?.trim();
-  if (!name) throw new Error(`Row ${rowIndex + 2}: missing "name"`);
+  if (!name) return null;
 
   const priceStr = raw["price"]?.trim();
   const price = Number(priceStr);
@@ -102,7 +102,13 @@ function rowToItem(raw: RawRow, rowIndex: number): Item {
     condition = "good";
   }
 
+  const tags = (raw["tags"] ?? "")
+    .split(";")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
   const sold = raw["sold"]?.trim().toLowerCase() === "true";
+  const retailLink = raw["retailLink"]?.trim() ?? "";
 
   return {
     id,
@@ -111,8 +117,10 @@ function rowToItem(raw: RawRow, rowIndex: number): Item {
     mainImage,
     description,
     additionalImages,
+    tags,
     condition: condition as Item["condition"],
     sold,
+    retailLink,
   };
 }
 
@@ -126,12 +134,12 @@ export function parseSheetCSV(csvText: string): Item[] {
   const dataRows = rows.slice(1);
 
   return dataRows
-    .filter((row) => row[0]?.trim())
     .map((row, i) => {
       const raw: RawRow = {};
       headers.forEach((h, j) => {
         raw[h] = row[j] ?? "";
       });
       return rowToItem(raw, i);
-    });
+    })
+    .filter((item): item is Item => item !== null);
 }
