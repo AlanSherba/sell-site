@@ -53,30 +53,26 @@ export function ItemDetail({ item }: ItemDetailProps)
   }, [navigate, allImages.length]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto">
-      {/* Backdrop */}
-      <Link
-        to="/"
-        className="fixed inset-0 bg-white/60"
-        aria-label="Close detail"
-      />
-
-      {/* Content panel */}
-      <div className="relative mx-auto mt-8 mb-8 max-w-3xl bg-white p-6 shadow-xl border-4 border-black">
+    <div className="fixed inset-0 z-50 flex flex-col bg-white/90 backdrop-blur-[16px] cursor-pointer" onClick={() => navigate("/")}>
+      {/* Sticky header bar */}
+      <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-300 bg-white p-0 cursor-default" onClick={(e) => e.stopPropagation()}>
+        <h2 className="truncate text-lg m-4 font-bold text-gray-900">{item.name}</h2>
         <Link
           to="/"
-          className="absolute top-[-2px] right-[-64px] text-4xl bg-white border-4 border-black w-[48px] h-[48px] flex items-center justify-center leading-none text-gray-400 hover:text-gray-600"
-          aria-label="Close"
+          className="bg-red-600 hover:bg-red-700 px-8 py-1 text-[20px] font-bold text-white h-full flex items-center"
         >
-          &times;
+          X CLOSE
         </Link>
+      </div>
 
+      {/* Content panel */}
+      <div className="mx-auto w-full max-w-3xl overflow-y-auto p-6 cursor-default" onClick={(e) => e.stopPropagation()}>
         {/* Main image */}
-        <div className="relative aspect-portrait overflow-hidden bg-gray-100">
+        <div className="relative max-h-[60vh] overflow-hidden flex items-center justify-center">
           <img
             src={allImages[currentImage]}
             alt={item.name}
-            className="h-full w-full object-contain"
+            className="max-h-[60vh] w-full object-contain"
           />
           {allImages.length > 1 && currentImage > 0 && (
             <button
@@ -125,9 +121,7 @@ export function ItemDetail({ item }: ItemDetailProps)
         )}
 
         {/* Item info */}
-        <h2 className="mt-4 text-2xl font-bold text-gray-900">{item.name}</h2>
-
-        <div className="mt-2 flex flex-row flex-wrap gap-2">
+        <div className="mt-4 flex flex-row flex-wrap gap-2">
           <span className="bg-[#A3FF5C] text-xl font-bold text-[#2D2D2D] px-2 py-0.5 inline-block w-fit">
             {item.price === 0 ? "FREE" : `$${item.price.toFixed(2)}`}
           </span>
@@ -145,7 +139,7 @@ export function ItemDetail({ item }: ItemDetailProps)
             href={item.retailLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 underline"
+            className="mt-3 inline-flex items-center gap-1 text-[16px] text-blue-600 hover:text-blue-800 underline"
           >
             View original listing
             <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -153,7 +147,7 @@ export function ItemDetail({ item }: ItemDetailProps)
             </svg>
           </a>
         )}
-        <p className="mt-4 text-lg leading-relaxed text-black">
+        <p className="mt-4 text-[20px] leading-relaxed text-black">
           {item.description}
         </p>
 
