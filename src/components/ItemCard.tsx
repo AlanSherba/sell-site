@@ -37,9 +37,17 @@ export function ItemCard({ item }: ItemCardProps)
               </span>
             </div>
             {/* price */}
-            <div className="pl-2 pr-2 bg-[#A3FF5C] inline-block w-auto max-w-full">
-              <span className="text-lg font-semibold text-[#2D2D2D]">
-                {item.price === 0 ? "FREE" : `$${item.price.toFixed(0)}`}
+            <div
+              className={`pl-2 pr-2 inline-block w-auto max-w-full ${
+                item.price === 0 ? "bg-[#2D2D2D]" : "bg-[#A3FF5C]"
+              }`}
+            >
+              <span
+                className={`text-lg font-semibold ${
+                  item.price === 0 ? "text-[#A3FF5C]" : "text-[#2D2D2D]"
+                }`}
+              >
+                {item.price === 0 ? "FREE!" : `$${item.price.toFixed(0)}`}
               </span>
             </div>
           </div>
