@@ -50,15 +50,15 @@ export function HomePage()
   return (
     <div className="min-h-screen bg-white">
       <header className="sticky top-0 z-10 bg-white border-b-4">
-        <div className="mx-auto max-w-7xl px-4 py-6 flex flex-row items-center">
+        <div className="mx-auto max-w-7xl px-4 py-3 md:py-6 flex flex-col items-start md:flex-row md:items-center">
           <h1 className="text-3xl font-bold text-gray-900 mr-8">Digital Yard Sale</h1>
           {allTags.length > 0 && (
-            <div className="flex gap-2">
+            <div className="flex gap-2 overflow-x-auto w-full md:w-auto pb-1 scrollbar-hide">
               {allTags.map((tag) => (
                 <button
                   key={tag}
                   onClick={() => toggleTag(tag)}
-                  className={`px-3 py-1 text-sm font-medium ${selectedTag === tag
+                  className={`flex-shrink-0 px-3 py-1 text-sm font-medium ${selectedTag === tag
                       ? "text-gray-900"
                       : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                     }`}

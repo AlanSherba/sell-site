@@ -8,3 +8,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
 }
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
