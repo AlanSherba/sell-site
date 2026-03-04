@@ -22,12 +22,18 @@ export function HomePage()
   );
 
   const filteredItems = useMemo(
-    () =>
-      selectedTag === null
-        ? items
-        : selectedTag === FREE_TAG
-          ? items.filter((i) => i.price === 0)
-          : items.filter((i) => i.tags.includes(selectedTag)),
+    () => {
+      const list =
+        selectedTag === null
+          ? items
+          : selectedTag === FREE_TAG
+            ? items.filter((i) => i.price === 0)
+            : items.filter((i) => i.tags.includes(selectedTag));
+      return [...list].sort((a, b) => {
+        const order = (i: typeof a) => (i.sold ? 2 : i.presale ? 1 : 0);
+        return order(a) - order(b);
+      });
+    },
     [items, selectedTag]
   );
 

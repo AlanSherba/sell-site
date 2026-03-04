@@ -134,6 +134,12 @@ export function ItemDetail({ item }: ItemDetailProps)
           </div>
           )}
         </div>
+        {item.presale && (
+          <div className="mt-3 bg-yellow-400 text-[#2D2D2D] px-4 py-3">
+            <span className="font-bold">Presale</span>
+            <p className="mt-1">This item is for sale but we currently need it to live our lives. You can contact us to buy it, but it will be sold closer to our move date.</p>
+          </div>
+        )}
         {item.retailLink && (
           <a
             href={item.retailLink}

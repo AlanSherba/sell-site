@@ -50,6 +50,13 @@ export function ItemCard({ item }: ItemCardProps)
                 {item.price === 0 ? "FREE!" : `$${item.price.toFixed(0)}`}
               </span>
             </div>
+            {item.presale && (
+              <div className="pl-2 pr-2 bg-yellow-400 inline-block w-auto max-w-full">
+                <span className="text-lg font-semibold text-[#2D2D2D]">
+                  PRESALE
+                </span>
+              </div>
+            )}
           </div>
         )}
       </div>

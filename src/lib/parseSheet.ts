@@ -108,6 +108,7 @@ function rowToItem(raw: RawRow, rowIndex: number): Item | null {
     .filter(Boolean);
 
   const sold = raw["sold"]?.trim().toLowerCase() === "true";
+  const presale = raw["presale"]?.trim().toLowerCase() === "true";
   const retailLink = raw["retailLink"]?.trim() ?? "";
 
   return {
@@ -120,6 +121,7 @@ function rowToItem(raw: RawRow, rowIndex: number): Item | null {
     tags,
     condition: condition as Item["condition"],
     sold,
+    presale,
     retailLink,
   };
 }
